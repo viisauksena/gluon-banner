@@ -14,7 +14,7 @@ export PS1='\u@\h:\w\$ '
 [ -x /usr/bin/arp ] || arp() { cat /proc/net/arp; }
 [ -x /usr/bin/ldd ] || ldd() { LD_TRACE_LOADED_OBJECTS=1 $*; }
 
-echo "##########################################"
+echo    "########################################"
 echo " "
 # get ipv4 if not already there, checked simply by wget call
 # but be aware that a meshing node may start fastd connections
@@ -23,28 +23,28 @@ if [ $? != 0 ]; then
  echo "you may want IPv4, try :   udhcpc -i br-client -q -S -n"
 fi
 echo " "
-echo "##########################################"
-echo -n "### IP :  "
-ifconfig |head|tail -n1
+echo    "########################################"
+echo -n "### IP :  " ; ifconfig |head|tail -n1
 echo    "### from ssh : "$SSH_CONNECTION
-echo -n "### uptime :  "
-uptime
-echo -n "### pubkey :  "
-/etc/init.d/fastd show_key mesh_vpn
-echo -n "### firmware :  "
-cat /lib/gluon/release
-echo -n "### hardware :  "
-cat /tmp/sysinfo/model
-echo -n "### connected to this node  :    "
-batctl tl |grep W |wc -l
-echo -n "### number of total clients :    "
-batctl tg |grep W |wc -l
+echo -n "### known sshkeys : " ; echo -n $(grep -oE '[^ ]+$'  /etc/dropbear/authorized_keys)" - active : " ; cat /etc/dropbear/authorized_keys |grep -E "^ssh" |wc -l
+echo -n "### uptime/load :  " ; uptime
+echo    "########################################"
+echo -n "### pubkey :  " ; /etc/init.d/fastd show_key mesh_vpn
+echo -n "### firmware :  " ; cat /lib/gluon/release
+echo -n "### branch :  "; uci get autoupdater.settings.branch
+echo -n "### autoupdater enabled <0|1> :  " ; uci show autoupdater.settings.enabled
+echo -n "### hardware :  " ; cat /tmp/sysinfo/model
+echo    "########################################"
+echo -n "### connected to this node  :    " ; batctl tl |grep W |wc -l
+echo -n "### number of total clients :    " ; batctl tg |grep W |wc -l
 echo    "########################################"
 echo -n "/sys/class/net/bat0/mesh/hop_penalty :    "
 echo $(cat /sys/class/net/bat0/mesh/hop_penalty)
 echo "batctl gw :     " $(batctl gw)
 echo    "########################################"
-batctl gwl
+batctl gwl -H
+echo    "########################################"
+logread |tail
 echo    "########################################"
 
 # just some handy aliases
@@ -53,5 +53,4 @@ alias myip="echo -n 'ifconfig' && ifconfig |head|tail -n1 && echo 'from ssh : ' 
 alias status="source /etc/profile"
 alias ll="ls -la"
 PS1='$? ${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
 
