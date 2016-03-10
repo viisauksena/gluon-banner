@@ -8,6 +8,12 @@ macs=$(iwinfo phy0 scan |grep -o -E [0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0
 string=$(echo -n $(for mac in $macs; do echo -n "{\"macAddress\": \"$mac\"},"; done))
 string=$(echo ${string%?})
 
-echo "# you could use this on home computer to guess geo
+echo "# you could use this on home computer or server to guess geo
 echo "wget -q -O geodata https://location.services.mozilla.com/v1/geolocate?key=$apikey --post-data=\"{ \\\"wifiAccessPoints\\\": [$(echo -n $string)],\\\"considerIp\\\": \\\"false\\\"}\"; cat geodata "
-
+echo "# this will not work on node because normal node cant do POST and cant do HTTPS"
+echo "# after you find out your GEO - use this to change/activate geo on node"
+echo "uci set gluon-node-info.@location[0].latitude=<YOUR-LATITUDE>"
+echo "uci set gluon-node-info.@location[0].longitude=<YOUR-LONGITUDE>"
+echo "uci set gluon-node-info.@location[0].altitude=100"
+echo "uci set gluon-node-info.@location[0].share_location=1"
+echo "uci commit gluon-node-info"
