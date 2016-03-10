@@ -31,3 +31,4 @@ echo -n " lat:$(uci show|grep .longitude=|cut -d= -f2)"
 echo -n " lon:$(uci show|grep .longitude=|cut -d= -f2)"
 echo -n " Contact:$(uci show|grep contact|cut -d= -f2)"
 echo .
+echo "##### you could also try :    status     (login information screen)"
