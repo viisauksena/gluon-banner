@@ -1,0 +1,13 @@
+#!/bin/sh
+# script to generate wget string used on server or local computer to guess geo of node
+# based on fuzzle/viisauksena toolbox getgeo.sh
+
+: ${apikey:=test}
+
+macs=$(iwinfo phy0 scan |grep -o -E [0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2})
+string=$(echo -n $(for mac in $macs; do echo -n "{\"macAddress\": \"$mac\"},"; done))
+string=$(echo ${string%?})
+
+echo "# you could use this on home computer to guess geo
+echo "wget -q -O geodata https://location.services.mozilla.com/v1/geolocate?key=$apikey --post-data=\"{ \\\"wifiAccessPoints\\\": [$(echo -n $string)],\\\"considerIp\\\": \\\"false\\\"}\"; cat geodata "
+
