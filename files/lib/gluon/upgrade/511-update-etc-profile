@@ -1,0 +1,3 @@
+#!/bin/sh
+[ -f /etc/profile.gluon ] && mv /etc/profile.gluon /etc/profile
+
