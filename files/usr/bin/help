@@ -13,5 +13,5 @@ echo " autoupdater -f                    // Firmware-Update erzwingen
  iwinfo                            // wlan-parameter anzeigen
  iw dev client0 station dump       // WLAN Nachbarn mit Details
  nodeinfo                          // diverse infos ausgegeben
- v4up                              // ipv4 holen, wenn kein vpnuplink"
- geoguess                          // generate a wget string to guess GEO
+ v4up                              // ipv4 holen, wenn kein vpnuplink
+ geoguess                          // generate a wget string to guess GEO"
