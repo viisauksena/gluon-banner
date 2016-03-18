@@ -9,17 +9,17 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/gluon-banner
-  SECTION:=eulenfunk
+  SECTION:=FFFr
   CATEGORY:=Customization
   TITLE:=Banner file replacement
   DEPENDS:=+gluon-core +busybox
-  MAINTAINER:=Eulenfunk www.eulenfunk.de Andreas Dorfer
-  URL:=https://github.com/eulenfunk/packages
-  SOURCE:=https://github.com/eulenfunk/packages.git
+  MAINTAINER:=FFFr freiburg.freifunk.net fuzzle
+  URL:=https://github.com/viisauksena/gluon-banner
+  SOURCE:=https://github.com/viisauksena/gluon-banner.git
 endef
 
 define Package/gluon-banner/description
-	Banner file replacement
+	Banner file replacement - with plenty of information on login
 endef
 
 define Build/Prepare
@@ -47,7 +47,7 @@ if [ -h "./profile" ] ; then
 elif [ -f "./profile" ] ; then
 	/bin/mv "./profile" "./profile.openwrt"
 fi
-/bin/ln -s "./profile.openwrt" "./profile"
+/bin/ln -s "./profile.gluon" "./profile"
 exit 0
 endef
 
