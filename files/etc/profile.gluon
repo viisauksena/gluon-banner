@@ -37,9 +37,7 @@ echo -n "### known sshkeys : " ; echo -n $(grep -oE '[^ ]+$'  /etc/dropbear/auth
 echo -n "### uptime/load :  " ; uptime
 echo    "########################################"
 echo -n "### pubkey :  " ; /etc/init.d/fastd show_key mesh_vpn
-echo -n "### firmware :  " ; cat /lib/gluon/release
-echo -n "### branch :  "; uci get autoupdater.settings.branch
-echo -n "### autoupdater :  " ; uci get autoupdater.settings.enabled
+echo -n "### firmware : " $(cat /lib/gluon/release) "  branch : " $(uci get autoupdater.settings.branch) "  autoupdater : " ; uci get autoupdater.settings.enabled
 echo -n "### hardware :  " ; cat /tmp/sysinfo/model
 echo    "########################################"
 echo -n "### MoL:$(uci show|grep mesh_lan.auto|cut -d= -f2)"
