@@ -54,7 +54,7 @@ echo    "########################################"
 echo -n "### connected to this node  :    " ; batctl tl |grep W |wc -l
 echo -n "### number of nodes (inkl SN) :  " ; batctl o | wc -l
 echo -n "### number of total clients :    " ; batctl tg |grep W |wc -l
-echo -n "### number of GW : " $(batctl gwl -H |wc -l) " - connected to "; $(batctl gwl| grep = )
+echo -n "### number of GW : " $(batctl gwl -H |wc -l) " - connected to "; batctl gwl| grep = 
 echo    "########################################"
 echo -n "### /sys/class/net/bat0/mesh/hop_penalty :    "; echo $(cat /sys/class/net/bat0/mesh/hop_penalty)
 echo    "### batctl gw :     " $(batctl gw)
