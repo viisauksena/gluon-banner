@@ -1,5 +1,7 @@
 #!/bin/sh
 if [ $# != 1 ] ; then echo "usage: $0 <hop_penalty>    example $0 15"; exit 1;
 fi
-echo "change from $(cat /sys/class/net/bat0/mesh/hop_penalty) to $1 - remember, its not reboot-safe"
-echo $1 > /sys/class/net/bat0/mesh/hop_penalty
+if [ $1 -le 255 ] ; then 
+	echo "change from $(cat /sys/class/net/bat0/mesh/hop_penalty) to $1 - remember, its not reboot-safe"
+	echo $1 > /sys/class/net/bat0/mesh/hop_penalty
+fi
