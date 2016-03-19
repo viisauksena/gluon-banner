@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $0 <altidude in meters>   example : $0 122"; exit 1;
+fi
+if [ $1 -le 100000 ] ; then
+	uci set gluon-node-info.@location[0].altitude='$1'
+	uci commit
+fi
+

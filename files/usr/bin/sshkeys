@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ $# != 0 ] ; then echo "usage: $0      shows sshkeys"; exit 1;
+fi
+cat /etc/dropbear/authorized_keys

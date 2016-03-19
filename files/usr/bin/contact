@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ $# = 0 ] ; then echo "usage: $0 <contact_whatever>   example : $0 me@here   or    $0 foobar   or   $0 0800-123456   or   $0 GPG:954dfgggh"; exit 1;
+fi
+        uci set gluon-node-info.@owner[0].contact='$@'
+	uci commit

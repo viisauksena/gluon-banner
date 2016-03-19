@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $0 <branch>         choose from : stable support beta usbtesting experimental"; exit 1;
+fi
+if [ $1 = "stable" ] || [ $1 = "beta" ] || [ $1 = "support" ] || [ $1 = "usbtesting" ] || [ $1 = "experimental" ]; then
+	uci set autoupdater.settings.branch='$1'
+	uci commit
+fi
+

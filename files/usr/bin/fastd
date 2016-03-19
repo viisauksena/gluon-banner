@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $@ 1     or     $@ 0"; exit 1;
+fi
+if [ $1 != 1 ] || [ $1 != 0 ]; then
+        uci set fastd.mesh_vpn.enabled='$1'
+	uci commit
+	/etc/init.d/fastd reload
+fi
+
