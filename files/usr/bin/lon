@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ $# != 1 ] ; then echo "usage: $0 <longitude>    example : $0 5.6789"; exit 1;
 fi
-	uci set gluon-node-info.@location[0].longitude='$1'
+	uci set gluon-node-info.@location[0].longitude=$1
 	uci commit
 
