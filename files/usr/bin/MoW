@@ -1,7 +1,16 @@
 #!/bin/sh
 if [ $# != 1 ] ; then echo "usage: $0 1     or     $0 0"; exit 1;
 fi
-if [ $1 != 1 ] || [ $1 != 0 ]; then
-	uci set network.mesh_wan.auto=$1
-	uci commit
-fi
+
+case "$1" in
+        "?"|status)
+                uci get network.mesh_wan.auto                                                                                                                                  
+                ;;
+        0|1|on|off)
+		wolli=$1
+                if [ $1 = "on"] ; then wolli=1 ; fi
+                if [ $1 = "off"] ; then wolli=0 ; fi
+                uci set network.mesh_wan.auto=$wolli
+                uci commit
+                ;;                                                                                                                                                                  
+esac

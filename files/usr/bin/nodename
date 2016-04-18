@@ -1,5 +1,12 @@
 #!/bin/sh
 if [ $# != 1 ] ; then echo "usage: $0 myname-without-strange-signs"; exit 1;
 fi
-        uci set system.@system[0].hostname=$1
-	uci commit
+case "$1" in
+        "?"|status)
+                uci get system.@system[0].hostname                                                                                                                                  
+                ;;
+        *)
+		uci set system.@system[0].hostname=$1
+                uci commit
+                ;;                                                                                                                                                                  
+esac

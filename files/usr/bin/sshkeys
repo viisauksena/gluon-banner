@@ -1,4 +1,18 @@
 #!/bin/sh
-if [ $# != 0 ] ; then echo "usage: $0      shows sshkeys"; exit 1;
+if [ $# != 1 ] ; then echo "usage: $0 <show|active|status|nr>     show sshkeys or nr "; exit 1;
 fi
-cat /etc/dropbear/authorized_keys
+
+case "$1" in
+	show)
+		cat /etc/dropbear/authorized_keys
+		;;
+	active)
+		cat /etc/dropbear/authorized_keys |grep -E "^ssh" |wc -l
+		;;
+	status|"?")
+		cat /etc/dropbear/authorized_keys |grep -E "^ssh" |grep -oE '[^ ]+$'
+		;;
+	nr)
+		cat /etc/dropbear/authorized_keys |wc -l
+		;;
+esac

@@ -1,7 +1,15 @@
 #!/bin/sh
 if [ $# != 1 ] ; then echo "usage: $0 <hop_penalty>    example $0 15"; exit 1;
 fi
-if [ $1 -le 255 ] ; then 
-	echo "change from $(cat /sys/class/net/bat0/mesh/hop_penalty) to $1 - remember, its not reboot-safe"
-	echo $1 > /sys/class/net/bat0/mesh/hop_penalty
-fi
+
+case "$1" in
+        "?"|status)
+                cat /sys/class/net/bat0/mesh/hop_penalty
+                ;;
+        *)
+                foo=$(cat /sys/class/net/bat0/mesh/hop_penalty)
+                echo "change from $foo to $1 - this is reboot-safe"
+                sed -i s/hop_penalty\ \'.*\'/hop_penalty\ \'$1\'/g /etc/config/batman-adv
+                echo $1 > /sys/class/net/bat0/mesh/hop_penalty
+                ;;
+esac
