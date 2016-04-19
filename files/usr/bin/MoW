@@ -8,8 +8,8 @@ case "$1" in
                 ;;
         0|1|on|off)
 		wolli=$1
-                if [ $1 = "on"] ; then wolli=1 ; fi
-                if [ $1 = "off"] ; then wolli=0 ; fi
+                if [ $1 = "on" ] ; then wolli=1 ; fi
+                if [ $1 = "off" ] ; then wolli=0 ; fi
                 uci set network.mesh_wan.auto=$wolli
                 uci commit
                 ;;                                                                                                                                                                  

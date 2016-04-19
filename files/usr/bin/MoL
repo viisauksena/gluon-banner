@@ -8,8 +8,8 @@ case "$1" in
                 ;;                                                                                                                                                                  
         0|1|on|off)
 		molli=$1
-                if [ $1 = "on"] ; then molli=1 ; fi
-		if [ $1 = "off"] ; then molli=0 ; fi
+                if [ $1 = "on" ] ; then molli=1 ; fi
+		if [ $1 = "off" ] ; then molli=0 ; fi
 		uci set network.mesh_lan.auto=$molli
 	        uci commit
                 ;;                                                                                                                                                                  
