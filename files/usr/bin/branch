@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ $# != 1 ] ; then echo "usage: $0 <branch>         choose from : stable support beta usbtesting experimental"; exit 1;
+if [ $# != 1 ] ; then printf "set branch \n usage: $0 <branch> \n choose from : stable support beta usbtesting experimental"; exit 1;
 fi
 case "$1" in
         stable|beta|support|usbtesting|experimental)

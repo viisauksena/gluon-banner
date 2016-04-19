@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ $# != 1 ] ; then echo "usage: $0 1     or     $0 0"; exit 1;
+if [ $# != 1 ] ; then printf "mesh on wan\nusage: $0 <1|0|status>"; exit 1;
 fi
 
 case "$1" in

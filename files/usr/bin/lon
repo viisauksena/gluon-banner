@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ $# != 1 ] ; then echo "usage: $0 <longitude>    example : $0 5.6789"; exit 1;
+if [ $# != 1 ] ; then printf "usage: $0 <longitude|status>\nexample : $0 5.6789"; exit 1;
 fi
 
 case "$1" in

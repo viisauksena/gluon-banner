@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ $# != 1 ] ; then echo "usage: $0 <altidude in meters>   example : $0 122"; exit 1;
+if [ $# != 1 ] ; then echo "usage: $0 <altitude in meter>   example : $0 122"; exit 1;
 fi
 case "$1" in
 	"?"|status)
