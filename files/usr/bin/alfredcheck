@@ -1,0 +1,3 @@
+#!/bin/sh
+echo foo |alfred -s 110
+alfred -r 110 ; if [ $? != 0 ]; then  /etc/init.d/alfred restart ; fi
