@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $0 <on|off|status>      example : $0 on"; exit 1;
+fi
+case "$1" in
+	1|on)
+		ifconfig ibss0 up
+		;;
+	0|off)
+		echo "you may loose connection on ssh also, try bat0 $(echo -n $(ifconfig bat0 |head -n2 |tail -n1))"; ifconfig ibss0 down
+		;;
+	"?"|status)
+		ifconfig |grep ^ibss0 |wc -l
+		;;
+esac
