@@ -21,8 +21,8 @@ echo    "########################################"
 echo -n "### MoL:$(uci show|grep mesh_lan.auto|cut -d= -f2)"
 echo -n "   MoW:$(uci show|grep mesh_wan.auto|cut -d= -f2)"
 echo    "   fastd:$(uci show|grep fastd.mesh_vpn.enabled|cut -d= -f2) clientwifi:$(clientwifi ?) meshwifi:$(meshwifi ?)"
-echo -n "### $(iwinfo |grep Channel)" ; echo 
-echo    "### cable on : $(swconfig dev switch0 show | grep 'link:'|grep -v down|cut -d ":" -f3)"
+echo -n "### $(iwinfo |grep Channel|tr -s ' ' '  '| tr -d '\n')";echo                      
+echo -n "### cable on : $(swconfig dev switch0 show | grep 'link:'|grep -v down|cut -d ":" -f3|tr -s ' ' '  '| tr -d '\n')";echo 
 echo -n "### location:  $(uci show|grep .share_location=|cut -d= -f2)"
 echo -n " lat:$(uci show|grep .latitude=|cut -d= -f2)"
 echo -n " lon:$(uci show|grep .longitude=|cut -d= -f2)"
