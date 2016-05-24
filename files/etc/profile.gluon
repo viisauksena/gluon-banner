@@ -22,44 +22,7 @@ export PS1='\u@\h:\w\$ '
         unset FILE
 }
 
-echo    "########################################"
-echo    "checking v4 - empty if v4 available "
-# get ipv4 if not already there, checked simply by wget call
-# but be aware that a meshing node may start fastd connections
-wget -T 4 -O /dev/null --quiet http://nirgendwo.de 2>/dev/null 
-if [ $? != 0 ]; then
- echo   "you may want IPv4, try :   udhcpc -i br-client -q -S -n"
-fi
-echo    "########################################"
-echo -n "### IP :  " ; ifconfig |head|tail -n1
-echo    "### from ssh : "$SSH_CONNECTION
-echo    "### active sshkeys : $(echo -n $(sshkeys ?) "("$(sshkeys active) of $(sshkeys nr)")")"
-echo -n "### known sshkeys : " ; echo $(grep -oE '[^ ]+$'  /etc/dropbear/authorized_keys)
-echo -n "### uptime/load :  " ; uptime
-echo    "########################################"
-echo -n "### pubkey :  " ; /etc/init.d/fastd show_key mesh_vpn
-echo -n "### firmware : " $(cat /lib/gluon/release) "  branch : " $(uci get autoupdater.settings.branch) "  autoupdater : " ; uci get autoupdater.settings.enabled
-echo -n "### hardware :  " ; cat /tmp/sysinfo/model
-echo    "########################################"
-echo -n "### MoL:$(uci show|grep mesh_lan.auto|cut -d= -f2)"
-echo -n "   MoW:$(uci show|grep mesh_wan.auto|cut -d= -f2)"
-echo    "   fastd:$(uci show|grep fastd.mesh_vpn.enabled|cut -d= -f2) clientwifi:$(clientwifi ?) meshwifi:$(meshwifi ?)"
-echo -n "### location:  $(uci show|grep .share_location=|cut -d= -f2)"
-echo -n " lat:$(uci show|grep .latitude=|cut -d= -f2)"
-echo -n " lon:$(uci show|grep .longitude=|cut -d= -f2)"
-echo    " alt:$(uci show|grep .altitude=|cut -d= -f2)"
-echo    "### contact :  $(uci show|grep contact|cut -d= -f2)"
-echo    "########################################"
-echo -n "### connected to this node  :    " ; batctl tl |grep W |wc -l
-echo -n "### number of nodes (inkl SN) :  " ; batctl o | wc -l
-echo -n "### number of total clients :    " ; batctl tg |grep W |wc -l
-echo -n "### number of GW : " $(batctl gwl -H |wc -l) " - connected to "; batctl gwl| grep = 
-echo    "########################################"
-echo -n "### /sys/class/net/bat0/mesh/hop_penalty :    "; echo $(cat /sys/class/net/bat0/mesh/hop_penalty)
-echo    "### batctl gw :     " $(batctl gw)
-echo    "####logread#############################"
-logread |tail -n5 |head -n4
-echo    "########################################"
+/usr/bin/nodeinfo
 
 # just some handy aliases
 alias cd..="cd .."
