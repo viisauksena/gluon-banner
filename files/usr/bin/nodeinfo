@@ -5,7 +5,7 @@ echo    "checking v4 - empty if v4 available "
 # but be aware that a meshing node may start fastd connections
 wget -T 4 -O /dev/null --quiet http://nirgendwo.de 2>/dev/null
 if [ $? != 0 ]; then
- echo   "you may want IPv4, try :   udhcpc -i br-client -q -S -n"
+ echo   "you may want IPv4, try :   udhcpc -i br-client -q -S -n -T 10"
 fi
 echo    "########################################"
 echo -n "### IP :  " ; ifconfig |head|tail -n1
@@ -22,7 +22,7 @@ echo -n "### MoL:$(uci show|grep mesh_lan.auto|cut -d= -f2)"
 echo -n "   MoW:$(uci show|grep mesh_wan.auto|cut -d= -f2)"
 echo    "   fastd:$(uci show|grep fastd.mesh_vpn.enabled|cut -d= -f2) clientwifi:$(clientwifi ?) meshwifi:$(meshwifi ?)"
 echo -n "### $(iwinfo |grep Channel|tr -s ' ' '  '| tr -d '\n')";echo                      
-echo -n "### cable on : $(swconfig dev switch0 show | grep 'link:'|grep -v down|cut -d ":" -f3|tr -s ' ' '  '| tr -d '\n')";echo 
+echo -n "### cable on : $(swconfig dev switch0 show | grep 'link:'|grep -v down|cut -d ":" -f3|tr -s ' ' '  '| tr -d '\n')";uplinkif
 echo -n "### location:  $(uci show|grep .share_location=|cut -d= -f2)"
 echo -n " lat:$(uci show|grep .latitude=|cut -d= -f2)"
 echo -n " lon:$(uci show|grep .longitude=|cut -d= -f2)"

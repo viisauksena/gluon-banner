@@ -1,0 +1,2 @@
+#!/bin/sh
+batctl gwl | grep = |cut -d] -f1|grep -o -E '[^ ]*$'
