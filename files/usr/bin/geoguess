@@ -1,2 +1,2 @@
 #!/bin/sh
-wget -qO- "$(i=0;echo -n "http://openfreiburg.de/freifunk/geoguess.php?";for line in $(iwinfo phy0 scan |grep -o -E [0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}); do if [ $i != 0 ] ; then echo -n "&"; fi; echo -n "mac"$i"="$line; let i++; done)"
+wget -qO- "$(i=0;echo -n "http://openfreiburg.de/freifunk/geoguess.php?";for line in $(iwinfo phy0 scan |grep -o -E '([0-9a-fA-F]{2}[:]){5}[0-9a-fA-F]{2}') ; do if [ $i != 0 ] ; then echo -n "&"; fi; echo -n "mac"$i"="$line; let i++; done)"
