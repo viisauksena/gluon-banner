@@ -1,17 +1,2 @@
 #!/bin/sh
-# script to generate wget string used on server or local computer to guess geo of node
-# based on fuzzle/viisauksena toolbox getgeo.sh
-
-: ${apikey:=test}
-
-macs=$(iwinfo phy0 scan |grep -o -E [0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2})
-string=$(echo -n $(for mac in $macs; do echo -n "{\\\"macAddress\\\": \\\"$mac\\\"},"; done))
-string=$(echo ${string%?})
-
-echo "# you could use this on home computer or server to guess geo-location. mark/copy/paste as one long line!"
-echo ""
-echo "wget -q -O geodata https://location.services.mozilla.com/v1/geolocate?key=$apikey --post-data=\"{ \\\"wifiAccessPoints\\\": [$(echo -n $string)],\\\"considerIp\\\": \\\"false\\\"}\" ; cat geodata"
-echo ""
-echo "# (this will not work here on the node! because normal nodes can not do POST and can not do HTTPS)"
-echo "# after doing it locally then paste the result from your server back here, and use following microscripts"
-echo "lat <latitude>   ;   lon <longitude>   ;   alt <altitude>   ;   location <1>"
+wget -qO- "$(i=0;echo -n "http://openfreiburg.de/freifunk/geoguess.php?";for line in $(iwinfo phy0 scan |grep -o -E [0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}[:][0-9A-F]{2}); do if [ $i != 0 ] ; then echo -n "&"; fi; echo -n "mac"$i"="$line; let i++; done)"
