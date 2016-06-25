@@ -1,0 +1,31 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $0 <on|off|all|sn1|sn2|sn3...>"; exit 1;
+fi
+
+case "$1" in
+        on|enabled)
+		uci show |grep "enabled='1'"| grep -o -E sn[0-9]+
+		exit 0
+		;;
+	off|disabled)
+		uci show |grep "enabled='0'"| grep -o -E sn[0-9]+
+		exit 0                                                                                                                                                                                                           
+		;;
+	all)
+		for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do                                                                                                                                                                  
+	        	uci set $peer=1                                                                                                                                                                                                                                     
+		done                                                                                                                                                                                                                                                        
+		;;
+esac
+
+if [ $1 != NULL ]; then
+	# first deactivate all                                                                                                                                                                                                                                      
+	for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do                                                                                                                                                                  
+        	uci set $peer=0                                                                                                                                                                                                                                     
+	done
+	# then activate specific   
+	uci set fastd.mesh_vpn_backbone_peer_$1.enabled=1
+	# restart fastd
+	/etc/init.d/fastd restart                                                                                                                                                                                                                                   
+fi
+
