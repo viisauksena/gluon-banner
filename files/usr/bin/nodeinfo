@@ -30,7 +30,7 @@ echo    " alt:$(uci show|grep .altitude=|cut -d= -f2)"
 echo    "### contact :  $(uci show|grep contact|cut -d= -f2)"
 echo    "########################################"
 echo -n "### connected to this node  :    " ; batctl tl |grep W |wc -l
-echo -n "### number of nodes (inkl SN) :  " " $(batctl o | wc -l) "    enabled sn: " $(fastdforce on); echo 
+echo -n "### number of nodes (inkl SN) :  " $(batctl o | wc -l) "    enabled sn: " $(fastdforce on); echo 
 echo -n "### number of total Wificlients :" ; batctl tg |grep W |wc -l
 echo -n "### number of GW : " $(batctl gwl -H |wc -l) " - connected to "; batctl gwl| grep =
 echo    "########################################"
