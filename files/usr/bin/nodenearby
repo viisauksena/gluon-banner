@@ -1,0 +1,18 @@
+#!/bin/sh
+if [ $# != 1 ] ; then echo "usage: $0 <long|short|client>      connected other freifunknodes or clients"; exit 1;
+fi
+case "$1" in
+        "?"|status)
+                echo "$0 short : iwinfo ibss0 assoclist"
+		echo "$0 long : iw dev ibss0 station dump"
+                ;;
+        short)
+		iwinfo ibss0 assoclist
+		;;
+	long)
+		iw dev ibss0 station dump
+		;;
+	client)
+		iwinfo client0 assoclist
+		;;
+esac
