@@ -1,0 +1,6 @@
+#!/usr/bin/lua
+if ( arg[1] ~= nil ) then 
+
+print(string.lower(arg[1]))
+end
+
