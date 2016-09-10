@@ -6,11 +6,18 @@ case "$1" in
         "?"|status)                                                                                                                                                                 
                 uci get network.mesh_lan.auto                                                                                                                           
                 ;;                                                                                                                                                                  
-        0|1|on|off)
-		molli=$1
-                if [ $1 = "on" ] ; then molli=1 ; fi
-		if [ $1 = "off" ] ; then molli=0 ; fi
-		uci set network.mesh_lan.auto=$molli
-	        uci commit
+        0|off)
+		uci set network.mesh_lan.auto=1
+		for ifname in $(cat /lib/gluon/core/sysconfig/lan_ifname); do
+			uci del_list network.client.ifname=$ifname
+		done
+		uci commit
+		;;
+	1|on)
+		uci set network.mesh_lan.auto=0
+		for ifname in $(cat /lib/gluon/core/sysconfig/lan_ifname); do
+			uci add_list network.client.ifname=$ifname
+		done
+		uci commit
                 ;;                                                                                                                                                                  
 esac
