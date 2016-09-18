@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "only hint"
+echo "iw station set <MAC address> plink_action <open|block>"
