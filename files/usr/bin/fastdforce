@@ -12,7 +12,7 @@ case "$1" in
 		exit 0                                                                                                                                                                                                           
 		;;
 	show)
-		uci get fastd |grep ".enabled="
+		uci shwo fastd |grep ".enabled="
 		;;
 	all)
 		for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do
