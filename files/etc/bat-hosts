@@ -1,7 +1,17 @@
-2e:4b:d9:81:57:c5 ##_SN1_##
-2e:4b:d9:81:57:c3 ##_SN2_##
-00:16:3e:c1:a7:53 unknown
-c2:6f:9f:7e:7e:2a unknown-sn1-2-22
+26:a7:c9:48:0d:0c SN2-herr@none
+ae:b3:14:ea:9f:e4 SN2-bat0
+9e:c8:4a:79:a2:49 SN2-master@none
+02:93:bb:1c:b3:07 SN2-sn22@none
+26:a7:c9:3e:bc:f8 SN2-sn3@none
+26:a7:c9:3e:bc:fa SN2-sn5@none
+2e:4b:d9:81:57:c5 fastd-sn2
+02:22:22:22:22:04 SN2-backbone
+56:da:2a:0c:79:ea SN22-herr@none
+ae:b3:14:3e:ec:5f SN22-bat0
+e2:8d:0d:cb:f8:16 SN22-master@none
+82:fa:d0:6b:4f:7c SN22-sn2@none
+02:00:16:16:16:04 SN22-backbone
+2e:4b:d9:bd:81:5b fastd-sn22
 02:ee:ee:ee:ee:ee br-sn3
 fe:0d:35:a6:8f:f6 br-sn4
 0e:f2:f7:96:a6:44 br-sn5
@@ -15,6 +25,9 @@ da:a4:2d:8e:e7:b9 br-sn10
 26:21:3d:5c:1e:bf br-sn14
 52:fe:b9:63:36:d6 br-sn15
 32:55:4c:e3:73:e8 br-sn16
+02:00:00:26:00:14 eth1-sn14
+02:00:00:26:00:15 eth1-sn15
+02:00:00:23:00:09 eth1-sn16
 e6:dc:98:f7:1c:7a fastd-sn3
 02:ee:44:44:44:03 fastd-sn4
 02:ee:55:55:55:03 fastd-sn5
@@ -47,3 +60,4 @@ e6:dc:98:f7:1c:7a fastd-sn3
 02:00:00:25:00:12 Kno-e1-SN12
 02:00:00:26:00:01 e1-br-laska
 02:00:44:00:00:33 bb-laska
+
