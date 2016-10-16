@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ $# != 1 ] ; then echo "usage: $0 <on|off|all|sn1|sn2|sn3...>"; exit 1;
+if [ $# = 0 ] ; then echo "usage: $0 <on|off|show|all|none|sn1|sn2|sn3...sn3 on|sn4 off>"; exit 1;
 fi
 
 case "$1" in
@@ -11,24 +11,40 @@ case "$1" in
 		uci show |grep "enabled='0'"| grep -o -E sn[0-9]+
 		exit 0                                                                                                                                                                                                           
 		;;
+	show)
+		uci get fastd |grep ".enabled="
+		;;
 	all)
 		for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do
 	        	uci set $peer=1
+		done
+		;;
+	none)
+		for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do
+			uci set $peer=0
 		done
 		;;
 	save)
 		echo "saved actual status - so it is rebootsafe - activated $(fastdforce on)"
 		uci commit
 		;;
-	sn1|sn2|sn3|sn4|sn5|sn6|sn7|sn8|sn9|sn10|sn11|sn12|sn13|sn14|sn15|sn16|sn17)
-		# first deactivate all
-		for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do
-	                uci set $peer=0
-        	done
-		# then activate specific
-		uci set fastd.mesh_vpn_backbone_peer_$1.enabled=1
+	sn1|sn2|sn3|sn4|sn5|sn6|sn7|sn8|sn9|sn10|sn11|sn12|sn13|sn14|sn15|sn16|sn17|sn22)
+		if [ $2 = "on" ]; then 
+			uci set fastd.mesh_vpn_backbone_peer_$1.enabled=1
+		fi
+		if [ $2 = "off" ]; then
+			uci set fastd.mesh_vpn_backbone_peer_$1.enabled=0
+		fi
+		if [ ! -n "$2" ]; then
+			echo "deactivate all but $1"
+			for peer in $(uci show |grep fastd.mesh_vpn_backbone_peer_ |grep enabled |cut -d= -f1); do
+	        	        uci set $peer=0
+        		done
+			uci set fastd.mesh_vpn_backbone_peer_$1.enabled=1
+		fi
 		;;
 esac
 
 # restart fastd if not exited before
 /etc/init.d/fastd restart
+
