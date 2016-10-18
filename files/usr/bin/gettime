@@ -1,0 +1,6 @@
+#!/usr/sh
+grep -q 1.ntp.services.fffr /etc/hosts
+if [ $? -ne 0 ] ; then
+	echo "fdf0:9bb:7814:a630:de:eeff:feee:eeee 1.ntp.services.fffr">> /etc/hosts
+fi
+ntpd -d -q -p 1.ntp.services.fffr
