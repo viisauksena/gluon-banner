@@ -29,6 +29,7 @@ da:a4:2d:8e:e7:b9 br-sn10
 02:00:00:26:00:15 eth1-sn15
 02:00:00:23:00:09 eth1-sn16
 e6:dc:98:f7:1c:7a fastd-sn3
+02:ee:33:33:33:07 fastd-sn3
 02:ee:44:44:44:03 fastd-sn4
 02:ee:55:55:55:03 fastd-sn5
 02:ee:66:66:66:03 fastd-sn6
