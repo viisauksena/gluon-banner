@@ -7,6 +7,6 @@ case "$1" in
 		;;
 	*)
 	        uci set gluon-node-info.@owner[0].contact="$@"
-		uci commit
+		uci commit gluon-node-info
 		;;
 esac

@@ -11,6 +11,6 @@ case "$1" in
                 if [ $1 = "on" ] ; then wolli=1 ; fi
                 if [ $1 = "off" ] ; then wolli=0 ; fi
                 uci set network.mesh_wan.auto=$wolli
-                uci commit
+                uci commit network
                 ;;                                                                                                                                                                  
 esac

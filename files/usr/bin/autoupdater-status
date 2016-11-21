@@ -7,7 +7,7 @@ case "$1" in
 		if [ $1 = "on" ];then enni=1 ;fi
 		if [ $1 = "off" ];then enni=1 ;fi
 		uci set autoupdater.settings.enabled=$enni
-	        uci commit
+	        uci commit autoupdater
                 ;;
         "?"|status)
                 uci get autoupdater.settings.enabled

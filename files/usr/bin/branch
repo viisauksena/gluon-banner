@@ -4,7 +4,7 @@ fi
 case "$1" in
         stable|beta|support|usbtesting|experimental)
                 uci set autoupdater.settings.branch=$1
-                uci commit
+                uci commit autoupdater
                 ;;
         "?"|status)
                 uci get autoupdater.settings.branch

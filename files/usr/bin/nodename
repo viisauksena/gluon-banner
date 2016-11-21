@@ -7,6 +7,6 @@ case "$1" in
                 ;;
         *)
 		uci set system.@system[0].hostname=$1
-                uci commit
+                uci commit system
                 ;;                                                                                                                                                                  
 esac

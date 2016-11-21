@@ -11,13 +11,13 @@ case "$1" in
 		for ifname in $(cat /lib/gluon/core/sysconfig/lan_ifname); do
 			uci del_list network.client.ifname=$ifname
 		done
-		uci commit
+		uci commit network
 		;;
 	0|off)
 		uci set network.mesh_lan.auto=0
 		for ifname in $(cat /lib/gluon/core/sysconfig/lan_ifname); do
 			uci add_list network.client.ifname=$ifname
 		done
-		uci commit
+		uci commit network
                 ;;                                                                                                                                                                  
 esac

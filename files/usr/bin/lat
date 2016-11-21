@@ -8,6 +8,6 @@ case "$1" in
                 ;;
         *)
 	        uci set gluon-node-info.@location[0].latitude=$1
-        	uci commit
+        	uci commit gluon-node-info
                 ;;
 esac

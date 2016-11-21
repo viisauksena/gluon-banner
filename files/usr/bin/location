@@ -11,6 +11,6 @@ case "$1" in
 		if [ $1 = "on" ] ; then loco=1; fi
 		if [ $1 = "off" ] ; then loco=0; fi
 	        uci set gluon-node-info.@location[0].share_location=$loco
-		uci commit
+		uci commit gluon-node-info
                 ;;                                                                                                                                                                  
 esac 

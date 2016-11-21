@@ -7,7 +7,7 @@ case "$1" in
 		if [ $1 = "on" ];then eni=1 ;fi
 		if [ $1 = "off" ];then eni=0 ;fi
 	        uci set fastd.mesh_vpn.enabled=$eni
-        	uci commit
+        	uci commit fastd
 	        /etc/init.d/fastd reload
                 ;;
         "?"|status)
