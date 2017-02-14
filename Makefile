@@ -11,7 +11,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/gluon-banner
   SECTION:=FFFr
   CATEGORY:=Customization
-  TITLE:=Banner file replacement
+  TITLE:=Banner file replacement, and miniscripts
   DEPENDS:=+gluon-core +busybox
   MAINTAINER:=FFFr freiburg.freifunk.net fuzzle
   URL:=https://github.com/viisauksena/gluon-banner
