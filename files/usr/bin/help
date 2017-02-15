@@ -20,4 +20,6 @@ echo " autoupdater -f                    // Firmware-Update erzwingen
       hop_penalty <15>   lat <47.123>  lon  location <1|0> clientwifi <1|0> 
       MoL <1|0> MoW <1|0> nodename <my-mega-node>  sshkeys
  v4up                              // ipv4 holen, wenn kein vpnuplink
- geoguess                          // generate a wget string to guess GEO"
+ geoguess                          // generate a wget string to guess GEO
+ wginfo				   // get relevant wireguard info
+/etc/init.d/fastd show_key mesh_vpn / \"\" same for fastd"

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(cat /tmp/wg_publickey ; ifconfig wg0|grep inet)

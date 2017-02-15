@@ -2,7 +2,7 @@ some tools for Freifunk Gluon to enhance ssh logins with many infos and some min
 
 ```
 alfredcheck  autoupdater-status  clientwifi  fastd-status  geoguess_legacy  hop_penalty  location  meshwifi  MoW       nodename  sshkeys  uplinkif
-alt          branch              contact     geoguess      help             lat          lon       MoL       nodeinfo  snping    status   v4up
+alt          branch              contact     geoguess      help             lat          lon       MoL       nodeinfo  snping    status   v4up		 wginfo
 
 ```
 
