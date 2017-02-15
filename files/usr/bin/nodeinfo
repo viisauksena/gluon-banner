@@ -1,12 +1,6 @@
 #!/bin/sh
 echo    "########################################"
-echo    "checking v4 - empty if v4 available "
-# get ipv4 if not already there, checked simply by wget call
-# but be aware that a meshing node may start fastd connections
-# wget -T 4 -O /dev/null --quiet http://nirgendwo.de 2>/dev/null
-if [ $? != 0 ]; then
- echo   "you may want IPv4, try :   udhcpc -i br-client -q -S -n -T 10"
-fi
+echo   "you may want IPv4, try :   udhcpc -i br-client -q -S -n -T 10"
 echo    "########################################"
 echo -n "### IP :  " ; ifconfig |head|tail -n1
 echo    "### from ssh : "$SSH_CONNECTION
@@ -14,7 +8,7 @@ echo    "### active sshkeys : $(echo -n $(sshkeys ?) "("$(sshkeys active) of $(s
 echo -n "### known sshkeys : " ; echo $(grep -oE '[^ ]+$'  /etc/dropbear/authorized_keys)
 echo -n "### uptime/load :  " ; uptime
 echo    "########################################"
-echo -n "### pubkey :  " ; echo -n $(wg|grep public || /etc/init.d/fastd show_key mesh_vpn)
+echo "### pubkey :  " ; echo -n $(wg|grep public || /etc/init.d/fastd show_key mesh_vpn)
 echo -n "### firmware : " $(cat /lib/gluon/release) "  branch : " $(uci get autoupdater.settings.branch) "  autoupdater : " ; uci get autoupdater.settings.enabled
 echo -n "### hardware :  " ; cat /tmp/sysinfo/model
 echo    "########################################"
