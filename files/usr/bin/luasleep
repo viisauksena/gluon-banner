@@ -5,4 +5,6 @@ local t0=clock()
 while clock() - t0 <= n do
 end
 end
+sleep(tonumber(arg[1]))
+
 
