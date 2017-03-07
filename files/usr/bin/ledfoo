@@ -1,0 +1,23 @@
+#!/bin/sh
+r="-r"
+
+#alloff
+for line in $(ls /sys/class/leds/); do echo 0 > /sys/class/leds/${line}/brightness; done
+
+if [ x$1 == "xdark" ] ; then exit ; fi
+if [ x$1 == "xlight" ] ; then for line in $(ls /sys/class/leds/); do echo 1 > /sys/class/leds/${line}/brightness; done ; exit; fi
+
+#wan straight on
+echo 1 > /sys/class/leds/tp-link:green:wan_status/brightness
+
+#knightraider
+while true; do
+	for line in $(ls $r /sys/class/leds/ |grep lan); 
+	do 
+		luasleep 0.1
+		echo 1 > /sys/class/leds/${line}/brightness 
+		luasleep 0.2 && echo 0 > /sys/class/leds/${line}/brightness &
+	done
+	if [ x$r == "x-r" ]; then r=" "; else r="-r"; fi
+done
+
