@@ -1,5 +1,6 @@
 #!/bin/sh
 r="-r"
+[ x$1 == x-h ] && echo -e "usage: $0 <option> \n\t$0 -h \t this help \n \t$0 dark \t going dark \n \t$0 light\t going light \n \t$0 1 \t 1to4 \n \t$0 2 \t 4to1 \n \t$0 3 \t blink slow2fast \n \t$0 4 \t knight rider" && exit
 
 #alloff
 for line in $(ls /sys/class/leds/); do echo 0 > /sys/class/leds/${line}/brightness; done
@@ -10,14 +11,17 @@ if [ x$1 == "xlight" ] ; then for line in $(ls /sys/class/leds/); do echo 1 > /s
 #wan straight on
 echo 1 > /sys/class/leds/tp-link:green:wan_status/brightness
 
-#knightraider
 while true; do
+	case $1 in 
+             1) r=" ";;
+             2) r="-r";;
+             3) for x in 7 6 5 4 3 2 2 1 1 1 1 1 1 1 ; do luasleep 0.$x ; $0 light ; luasleep 0.$x; $0 dark; done;exit;;
+             4) if [ x$r == "x-r" ]; then r=" "; else r="-r"; fi ;;
+        esac
 	for line in $(ls $r /sys/class/leds/ |grep lan); 
 	do 
 		luasleep 0.1
 		echo 1 > /sys/class/leds/${line}/brightness 
 		luasleep 0.2 && echo 0 > /sys/class/leds/${line}/brightness &
 	done
-	if [ x$r == "x-r" ]; then r=" "; else r="-r"; fi
 done
-
