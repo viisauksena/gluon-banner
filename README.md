@@ -33,7 +33,7 @@ system("wget -qO- \"https://location.services.mozilla.com/v1/geolocate?key=test\
 ```
 GLUON_SITE_FEEDS=' ...  banner ... '
 PACKAGES_BANNER_REPO=https://github.com/viisauksena/gluon-banner.git
-PACKAGES_BANNER_COMMIT=c38e5cbfcece1d6de4cb5f8887983c1115d336a3
+PACKAGES_BANNER_COMMIT=4f91b48c81d964d84aac6156fa41c01270a8e2fb
 PACKAGES_BANNER_BRANCH=lede
 
 ```
