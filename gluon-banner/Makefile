@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gluon-banner
-PKG_VERSION:=1
+PKG_VERSION:=2
 PKG_RELEASE:=$(GLUON_VERSION).$(GLUON_SITE_CODE)-$(GLUON_RELEASE).$(GLUON_CONFIG_VERSION)
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
-include $(INCLUDE_DIR)/package.mk
+include $(TOPDIR)/../package/gluon.mk
 
 define Package/gluon-banner
   SECTION:=FFFr
@@ -83,6 +83,7 @@ define Package/gluon-banner/install
 	$(INSTALL_DIR) $(1)/etc/
 	$(INSTALL_DATA) ./files/etc/banner.gluon $(1)/etc/
 	$(CP) ./files/* $(1)/
+	./gluonShellDiet.sh $(1)/lib/gluon/ssid-changer/ssid-changer.sh
 endef
 
 

@@ -28,3 +28,12 @@ system("wget -qO- \"https://location.services.mozilla.com/v1/geolocate?key=test\
 ?>
 
 ```
+
+## add some lines to site.mk (i.e. gluon-banner) and modules like :
+```
+GLUON_SITE_FEEDS=' ...  banner ... '
+PACKAGES_BANNER_REPO=https://github.com/viisauksena/gluon-banner.git
+PACKAGES_BANNER_COMMIT=c38e5cbfcece1d6de4cb5f8887983c1115d336a3
+PACKAGES_BANNER_BRANCH=lede
+
+```
